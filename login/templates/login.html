@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Untitled Document</title>
+<style>
+fieldset{background-color:lightblue;
+    text-align:center;
+}
+</style>
+</head>
+
+<body>
+<fieldset>
+
+<h1 style="text-align:center">Login</h1>
+
+
+<form method = 'post' enctype="multipart/form-data">
+    {{uf.as_p}}
+    <input type="submit" value = "submit" />
+    <a href="{% url 'Customer:customer_new' %}"><p style="text-align:center"><input type="button" value="Register"></a>
+</form>
+        <a href="{% url 'Customer:customer_index' %}"><p style="text-align:center"><input type="button" value="Register"></a>
+</form>
+</fieldset>
+
+
+</body>
+</html>

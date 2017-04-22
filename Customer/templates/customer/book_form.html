@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Django CRUD: Welcome</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+     <style>
+fieldset{background-color:lightblue;
+    text-align:center;
+}
+</style>
+</head>
+
+<body>
+<div class=" text-center">
+<h1>Update Customer Information</h1>
+
+</div>
+<br><br>
+<fieldset>
+<div class="text-center">
+<form method="post">{% csrf_token %}
+        <br>
+    {{ form.as_p }}
+    <br>
+    <input type="submit" value="Submit" />
+</form>
+</div>
+</fieldset>
+</body>
+</html>

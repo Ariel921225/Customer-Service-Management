@@ -1,0 +1,83 @@
+BEGIN TRANSACTION;
+CREATE TABLE "Customer_customer" ("customerID" integer NOT NULL PRIMARY KEY, "fName" varchar(500) NOT NULL, "lName" varchar(100) NOT NULL, "joinDate" varchar(1000) NOT NULL, "emailID" varchar(1000) NOT NULL, "emailNotification" bool NOT NULL, "billType" varchar(20) NOT NULL, "contactNo" varchar(20) NOT NULL, "password" varchar(20) NOT NULL);
+
+CREATE TABLE "Customer_shipping_address" ("shipAddID" integer NOT NULL PRIMARY KEY, "state" varchar(10) NOT NULL, "city" varchar(50) NOT NULL, "zip" varchar(10) NOT NULL, "street" varchar(100) NOT NULL, "customerID_id" integer NOT NULL REFERENCES "Customer_customer" ("customerID"));
+
+CREATE TABLE "Customer_service_request" ("requestID" integer NOT NULL PRIMARY KEY, "requestType" varchar(500) NOT NULL, "subscriptionDate" varchar(100) NOT NULL, "fulfillmentDate" varchar(1000) NOT NULL, "description" varchar(1000) NOT NULL, "customerID_id" integer NOT NULL REFERENCES "Customer_customer" ("customerID"));
+
+CREATE TABLE "Customer_security" ("qID" integer NOT NULL PRIMARY KEY, "question" varchar(1000) NOT NULL, "answer" varchar(1000) NOT NULL, "customerID_id" integer NOT NULL REFERENCES "Customer_customer" ("customerID"));
+
+CREATE TABLE "Customer_payment_method" ("pmtMethodID" integer NOT NULL PRIMARY KEY, "cardNo" varchar(100) NOT NULL, "cardHolderName" varchar(20) NOT NULL, "cardType" varchar(50) NOT NULL, "expDate" varchar(20) NOT NULL, "cvvNo" integer NOT NULL, "customerID_id" integer NOT NULL REFERENCES "Customer_customer" ("customerID"));
+
+
+CREATE TABLE "Customer_billing_address" ("billAddID" integer NOT NULL PRIMARY KEY, "state" varchar(10) NOT NULL, "city" varchar(50) NOT NULL, "zip" varchar(10) NOT NULL, "street" varchar(100) NOT NULL, "PmtMethodID_id" integer NOT NULL REFERENCES "Customer_payment_method" ("pmtMethodID"));
+
+INSERT INTO `Customer_shipping_address` (shipAddID,state,city,zip,street,customerID_id) VALUES (1,'FL','Melbourne','32904','123 6th St.',1);
+INSERT INTO `Customer_shipping_address` (shipAddID,state,city,zip,street,customerID_id) VALUES (2,'MD','Chevy Chase','20815','71 Pilgrim Avenue',2);
+INSERT INTO `Customer_shipping_address` (shipAddID,state,city,zip,street,customerID_id) VALUES (3,'CT','South Windsor','60743','70 Bowman St.',3);
+INSERT INTO `Customer_shipping_address` (shipAddID,state,city,zip,street,customerID_id) VALUES (4,'HI','Honolulu','96815','4 Goldfield Rd.',4);
+INSERT INTO `Customer_shipping_address` (shipAddID,state,city,zip,street,customerID_id) VALUES (5,'IL','West Chicago','60815','44 Shirley Avenue',5);
+INSERT INTO `Customer_shipping_address` (shipAddID,state,city,zip,street,customerID_id) VALUES (6,'FL','Orlando','32806','514 Magnolia St.',6);
+
+INSERT INTO `Customer_service_request` (requestID,requestType,subscriptionDate,fulfillmentDate,description,customerID_id) VALUES (1,'refund','03/20/2016','03/22/2016','need a refund for the product',1);
+INSERT INTO `Customer_service_request` (requestID,requestType,subscriptionDate,fulfillmentDate,description,customerID_id) VALUES (2,'refund','09/11/2016','09/13/2016','need a refund for the product',2);
+INSERT INTO `Customer_service_request` (requestID,requestType,subscriptionDate,fulfillmentDate,description,customerID_id) VALUES (3,'order not received','02/11/2016','02/14/2016','do not receive ordered items',3);
+INSERT INTO `Customer_service_request` (requestID,requestType,subscriptionDate,fulfillmentDate,description,customerID_id) VALUES (4,'order not received','06/22/2016','06/25/2016','do not receive ordered items',4);
+INSERT INTO `Customer_service_request` (requestID,requestType,subscriptionDate,fulfillmentDate,description,customerID_id) VALUES (5,'order not received','08/02/2016','08/04/2016','do not receive ordered items',5);
+INSERT INTO `Customer_service_request` (requestID,requestType,subscriptionDate,fulfillmentDate,description,customerID_id) VALUES (6,'usage instructions','01/20/2016','01/20/2016','how to use the products',6);
+
+
+INSERT INTO `Customer_security` (qID,question,answer,customerID_id) VALUES (1,'What is your childhood nickname?','Mark',1);
+INSERT INTO `Customer_security` (qID,question,answer,customerID_id) VALUES (2,'What is the name of your favorite childhood friend?','Kim',1);
+INSERT INTO `Customer_security` (qID,question,answer,customerID_id) VALUES (3,'In what city did your parents meet?','Chicago',2);
+INSERT INTO `Customer_security` (qID,question,answer,customerID_id) VALUES (4,'What is your childhood nickname?','pat',2);
+INSERT INTO `Customer_security` (qID,question,answer,customerID_id) VALUES (5,'What is your favorite team?','Chicago Cubs',3);
+INSERT INTO `Customer_security` (qID,question,answer,customerID_id) VALUES (6,'What is your favorite movie?','Godfather',3);
+INSERT INTO `Customer_security` (qID,question,answer,customerID_id) VALUES (7,'What is your childhood nickname?','Ren',4);
+INSERT INTO `Customer_security` (qID,question,answer,customerID_id) VALUES (8,'What is your favorite movie?','Schindlers list',4);
+INSERT INTO `Customer_security` (qID,question,answer,customerID_id) VALUES (9,'What is the name of your favorite childhood friend?','Sam',5);
+INSERT INTO `Customer_security` (qID,question,answer,customerID_id) VALUES (10,'What is your childhood nickname?','Xin',5);
+INSERT INTO `Customer_security` (qID,question,answer,customerID_id) VALUES (11,'What is your favorite movie?','Fast and Furious',6);
+INSERT INTO `Customer_security` (qID,question,answer,customerID_id) VALUES (12,'What is your favorite team?','LA Lakers',6);
+
+INSERT INTO `Customer_payment_method` (pmtMethodID,cardNo,cardHolderName,cardType,expDate,cvvNo,customerID_id) VALUES (1,'4716775291401500','Srishti Govil','Visa','05/2021',234,1);
+INSERT INTO `Customer_payment_method` (pmtMethodID,cardNo,cardHolderName,cardType,expDate,cvvNo,customerID_id) VALUES (2,'4716717094450860','Mihir Gandhi','Visa','06/2019',473,2);
+INSERT INTO `Customer_payment_method` (pmtMethodID,cardNo,cardHolderName,cardType,expDate,cvvNo,customerID_id) VALUES (3,'5489371159043040','Ashwath Sundar','MasterCard','01/2020',857,3);
+INSERT INTO `Customer_payment_method` (pmtMethodID,cardNo,cardHolderName,cardType,expDate,cvvNo,customerID_id) VALUES (4,'5443808794132030','Siqi Ren','MasterCard','09/2021',837,4);
+INSERT INTO `Customer_payment_method` (pmtMethodID,cardNo,cardHolderName,cardType,expDate,cvvNo,customerID_id) VALUES (5,'6011258458905520','Xin Yu','Discover','03/2019',837,5);
+INSERT INTO `Customer_payment_method` (pmtMethodID,cardNo,cardHolderName,cardType,expDate,cvvNo,customerID_id) VALUES (6,'6011303431152200','Zhenyu Huang','Discover','04/2021',746,6);
+
+INSERT INTO `Customer_customer` (customerID,fName,lName,joinDate,emailID,emailNotification,billType,contactNo,password) VALUES (1,'Srishti','Govil','1/2/2007','srishtigovil@gmail.com',1,'Paper','2134204139','sr12');
+INSERT INTO `Customer_customer` (customerID,fName,lName,joinDate,emailID,emailNotification,billType,contactNo,password) VALUES (2,'Mihir','Gandhi','11/11/2011','mihirgandhi@gmail.com',0,'Paper','5563452998','yy12');
+INSERT INTO `Customer_customer` (customerID,fName,lName,joinDate,emailID,emailNotification,billType,contactNo,password) VALUES (3,'Ashwath','Sundar','6/6/2006','ashwathsundar@gmail.com',1,'Electronic','2408256326','8877');
+INSERT INTO `Customer_customer` (customerID,fName,lName,joinDate,emailID,emailNotification,billType,contactNo,password) VALUES (4,'Siqi','Ren','9/9/2009','siqiren@gmail.com',0,'Electronic','6462096778','ri12');
+INSERT INTO `Customer_customer` (customerID,fName,lName,joinDate,emailID,emailNotification,billType,contactNo,password) VALUES (5,'Xin','Yu','2/2/2008','xinyu@gmail.com',1,'Paper','8879076778','hi12');
+INSERT INTO `Customer_customer` (customerID,fName,lName,joinDate,emailID,emailNotification,billType,contactNo,password) VALUES (6,'Zhenyu','Huang','8/9/2017','zhenyu.huang@rhsmith.umd.edu',1,'Paper','7781234567','iio1');
+
+INSERT INTO `Customer_billing_address` (billAddID,state,city,zip,street,PmtMethodID_id) VALUES (1,'FL','Melbourne','32904','123 6th St.',1);
+INSERT INTO `Customer_billing_address` (billAddID,state,city,zip,street,PmtMethodID_id) VALUES (2,'MD','Chevy Chase','20815','71 Pilgrim Avenue',2);
+INSERT INTO `Customer_billing_address` (billAddID,state,city,zip,street,PmtMethodID_id) VALUES (3,'CT','South Windsor','60743','70 Bowman St.',4);
+INSERT INTO `Customer_billing_address` (billAddID,state,city,zip,street,PmtMethodID_id) VALUES (4,'HI','Honolulu','96815','4 Goldfield Rd.',4);
+INSERT INTO `Customer_billing_address` (billAddID,state,city,zip,street,PmtMethodID_id) VALUES (5,'IL','West Chicago','60815','44 Shirley Avenue',5);
+INSERT INTO `Customer_billing_address` (billAddID,state,city,zip,street,PmtMethodID_id) VALUES (6,'FL','Orlando','32806','514 Magnolia St.',6);
+CREATE INDEX "django_session_de54fa62" ON "django_session" ("expire_date");
+CREATE UNIQUE INDEX "django_content_type_app_label_76bd3d3b_uniq" ON "django_content_type" ("app_label", "model");
+CREATE INDEX "django_admin_log_e8701ad4" ON "django_admin_log" ("user_id");
+CREATE INDEX "django_admin_log_417f1b1c" ON "django_admin_log" ("content_type_id");
+CREATE UNIQUE INDEX "auth_user_user_permissions_user_id_14a6b632_uniq" ON "auth_user_user_permissions" ("user_id", "permission_id");
+CREATE INDEX "auth_user_user_permissions_e8701ad4" ON "auth_user_user_permissions" ("user_id");
+CREATE INDEX "auth_user_user_permissions_8373b171" ON "auth_user_user_permissions" ("permission_id");
+CREATE UNIQUE INDEX "auth_user_groups_user_id_94350c0c_uniq" ON "auth_user_groups" ("user_id", "group_id");
+CREATE INDEX "auth_user_groups_e8701ad4" ON "auth_user_groups" ("user_id");
+CREATE INDEX "auth_user_groups_0e939a4f" ON "auth_user_groups" ("group_id");
+CREATE UNIQUE INDEX "auth_permission_content_type_id_01ab375a_uniq" ON "auth_permission" ("content_type_id", "codename");
+CREATE INDEX "auth_permission_417f1b1c" ON "auth_permission" ("content_type_id");
+CREATE UNIQUE INDEX "auth_group_permissions_group_id_0cd325b0_uniq" ON "auth_group_permissions" ("group_id", "permission_id");
+CREATE INDEX "auth_group_permissions_8373b171" ON "auth_group_permissions" ("permission_id");
+CREATE INDEX "auth_group_permissions_0e939a4f" ON "auth_group_permissions" ("group_id");
+CREATE INDEX "Customer_shipping_address_2553112c" ON "Customer_shipping_address" ("customerID_id");
+CREATE INDEX "Customer_service_request_2553112c" ON "Customer_service_request" ("customerID_id");
+CREATE INDEX "Customer_security_2553112c" ON "Customer_security" ("customerID_id");
+CREATE INDEX "Customer_payment_method_2553112c" ON "Customer_payment_method" ("customerID_id");
+CREATE INDEX "Customer_billing_address_0d227282" ON "Customer_billing_address" ("PmtMethodID_id");
+COMMIT;

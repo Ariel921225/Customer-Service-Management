@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Django CRUD: Welcome</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <style>
+fieldset{background-color:lightblue;
+    text-align:center;
+}
+</style>
+</head>
+<body>
+<div class="text-center">
+<h1>Welcome to Customer Platform</h1>
+
+</div>
+<br>
+<br>
+<fieldset>
+{% for cus in customers %}
+<table class="table table-striped" style="text-align:left">
+<tr>
+
+
+        <th> Customer Information </th>
+        <th> </th>
+        <tr>
+        <td>Customer Name: </td> <td>{{cus.fName}}  {{ cus.lName }}</td>
+        </tr>
+        <tr>
+        <td>joinDate: </td><td>{{cus.joinDate}}</td>
+        </tr>
+        <tr>
+        <td>primaryEmailID: </td><td>{{cus.primaryEmailID}}</td>
+        </tr>
+        <tr>
+        <td>preferEmail: </td><td>{{cus.preferEmail}}</td>
+        </tr>
+        <tr>
+        <td> emailNotification: </td><td>{{cus.emailNotification}}</td>
+        </tr>
+        <tr>
+        <td>billType: </td><td>{{cus.billType}}</td>
+        </tr>
+        <tr>
+        <td>contactNo: </td><td>{{cus.contactNo}}</td>
+        </tr>
+</table>
+    </fieldset>
+    <br>
+    <br>
+
+    <div class="text-center">
+<a href="{% url 'Customer:customer_edit' cus.customerID %}"> <input type="button" value="edit"></a>
+        &nbsp;  &nbsp;
+<a href="{% url 'Customer:customer_delete' cus.customerID %}"> <input type="button" value="delete"></a>
+    </div>
+ {% endfor %}
+</body>
+</html>
