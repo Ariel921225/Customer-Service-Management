@@ -23,5 +23,5 @@ urlpatterns = [
    url(r'^customer_edit/(?P<pk>\d+)$', views.customer_update, name='customer_edit'),
    url(r'^customer_delete/(?P<pk>\d+)$', views.customer_delete, name='customer_delete'),
    url(r'^customer_new$', views.customer_create, name='customer_new'),
-   url(r'^customer_index$', views.customer_index, name='customer_index'),
-]
+   url(r'^index$', views.index, name='index')
+   ]

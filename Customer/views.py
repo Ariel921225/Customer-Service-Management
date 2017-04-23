@@ -14,7 +14,7 @@ class CustomerForm(ModelForm):
         fields = ['customerID', 'fName', 'lName', 'joinDate', 'primaryEmailID', 'preferEmail', 'emailNotification',
               'billType', 'contactNo','password']
 
-def customer_index(request, template_name='customer/index.html'):
+def index(request, template_name='customer/index.html'):
 
     ctx = {}
 

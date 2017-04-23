@@ -1,31 +1,70 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <title>Django CRUD: Welcome</title>
-   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <title>Landing Page - Customer Service Platform</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" media="all" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link href="{% static 'css/landing-page.css'%}" rel="stylesheet"/>
+
+    <!-- Custom Fonts -->
+    <link href="{% static 'font-awesome/css/font-awesome.min.css'%}" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css"/>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
     <style>
-fieldset{background-color:lightblue;
-    text-align:center;
+.img-circle{
+
+	height:230px;
+	width:250px;
+}
+body {
+	background-color: #F0F0F0;
 }
 </style>
+
 </head>
 
-<body>
+<body >
 
 <div class="text-center">
-<h1>Delete Customer</h1>
+<img src="{% static 'img/delete.jpeg' %}" class="img-circle" alt=""/>
 
 </div>
-<fieldset>
 <div class="text-center">
-<form method="post">{% csrf_token %}
-    <h2>Are you sure you want to delete "{{ object }}" ?</h2> <br>
-    <br>&nbsp;
+  <div class="content-section-a">
 
-    <input type="submit" value="Submit" />
-</form>
+        <div class="container">
+
+
+                    <hr class="section-heading-spacer">
+                    <div class="clearfix"></div>
+                        <form method="post">{% csrf_token %}
+                        <h2>Confirm to delete "{{ object }}" ?</h2> <br>
+
+                         <input type="submit" value="Confirm" />
+                        </form>
+                <br>
+                        <a href="{% url 'login:login' %}"><input type="submit" value="Cancel" /></a>
+
+
+            </div>
+                </div>
+
+        </div>
+  </div>
 </div>
-</fieldset>
+
 </body>
 
 </html>

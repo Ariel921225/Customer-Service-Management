@@ -22,5 +22,5 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
 
     url(r'^login/', include('login.urls')),
-    url(r'^customer/', include('Customer.urls'))
+    url(r'^', include('Customer.urls'))
 ]

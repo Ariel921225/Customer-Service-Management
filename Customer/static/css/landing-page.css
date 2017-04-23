@@ -32,7 +32,30 @@ h6 {
     background: url(../img/intro-bg.jpg) no-repeat center center;
     background-size: cover;
 }
+.intro-header1 {
+    padding-top: 50px; /* If you're making other pages, make sure there is 50px of padding to make sure the navbar doesn't overlap content! */
+    padding-bottom: 50px;
+    text-align: center;
+    color:white;
 
+    background: url(../img/1.jpg) no-repeat center center;
+    background-size: cover;
+}
+.intro-header2 {
+    padding-top: 50px; /* If you're making other pages, make sure there is 50px of padding to make sure the navbar doesn't overlap content! */
+    padding-bottom: 50px;
+    text-align: center;
+    color:white;
+
+    background: url(../img/banner-bg.jpg) no-repeat center center;
+    background-size: cover;
+}
+
+
+.loginbk{
+background-color:#f0f0f0;
+text-align:center;
+}
 .intro-message {
     position: relative;
     padding-top: 20%;
